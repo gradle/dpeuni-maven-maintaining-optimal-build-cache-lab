@@ -1,0 +1,39 @@
+name: Check for Build Cache Misses w/ Shell
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Every Wednesday at 12.00am
+    - cron: "0 0 * * 3"
+
+env:
+  script_version: 2.5.1
+  script_checksum: 131fb1a0de2409d7f1747bd0da75680e757d791596a81f43787f36badf40f1385aa593ab053c1b396a1bcbf6b9da64cc355e78c04eb55ff5d0a6526a5f318e54
+
+jobs:
+  Build-Validation-Scripts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: Download Build Validation Scripts
+        run: |
+          # Download scripts zip
+          curl -s -L -O https://github.com/gradle/gradle-enterprise-build-validation-scripts/releases/download/v${script_version}/gradle-enterprise-maven-build-validation-${script_version}.zip
+          # Verify zip
+          echo "${script_checksum}  gradle-enterprise-maven-build-validation-${script_version}.zip" | shasum -a 512 -c-
+          # Extract Build Validation Scripts
+          unzip -q -o gradle-enterprise-maven-build-validation-${script_version}.zip
+
+      - name: Run Build Validation Scripts
+        working-directory: ./gradle-enterprise-maven-build-validation
+        run: |
+            # This command will run `./mvnw clean verify --no-transfer-progress` twice
+            ./02-validate-local-build-caching-different-locations.sh \
+              --git-repo "$(pwd)/.." \
+              --goals verify \
+              --args "--no-transfer-progress" \
+              --fail-if-not-fully-cacheable
+        env:
+          GRADLE_ENTERPRISE_ACCESS_KEY: "${{ secrets.GRADLE_ENTERPRISE_ACCESS_KEY }}"

@@ -1,3 +1,4 @@
-.idea
+.idea/
 target/
-hopswujtn5e2pjemla44gtnide
+.mvn/.gradle-enterprise/gradle-enterprise-workspace-id
+gradle-enterprise-maven-build-validation*

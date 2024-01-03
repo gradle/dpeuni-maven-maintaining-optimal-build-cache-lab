@@ -1,0 +1,29 @@
+name: Check for Build Cache Misses w/ Action
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Every Tuesday at 12.00am
+    - cron: "0 0 * * 2"
+
+jobs:
+  Build-Validation-Scripts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: Download the validation scripts
+        uses: gradle/gradle-enterprise-build-validation-scripts/.github/actions/maven/download@v2.5.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run Build Validation Scripts
+        uses: gradle/gradle-enterprise-build-validation-scripts/.github/actions/maven/experiment-2@v2.5.1
+        with:
+          gitRepo: $(pwd)
+          goals: verify
+          args: --no-transfer-progress
+          failIfNotFullyCacheable: true
+        env:
+          GRADLE_ENTERPRISE_ACCESS_KEY: "${{ secrets.GRADLE_ENTERPRISE_ACCESS_KEY }}"
