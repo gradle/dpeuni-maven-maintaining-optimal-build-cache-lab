@@ -8,5 +8,14 @@
     <capture>
       <goalInputFiles>true</goalInputFiles>
     </capture>
+    <tags>
+      <tag>dpeuni-maven-maintaining-optimal-build-cache-lab</tag>
+    </tags>
+    <values>
+      <value>
+        <name>Course</name>
+        <value>Maintaining Optimal Maven Build Cache Performance</value>
+      </value>
+    </values>
   </buildScan>
 </gradleEnterprise>
