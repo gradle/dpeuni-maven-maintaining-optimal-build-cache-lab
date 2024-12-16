@@ -20,7 +20,7 @@ jobs:
       - name: Download Build Validation Scripts
         run: |
           # Download scripts zip
-          curl -s -L -O https://github.com/gradle/gradle-enterprise-build-validation-scripts/releases/download/v${script_version}/gradle-enterprise-maven-build-validation-${script_version}.zip
+          curl -s -L -O https://github.com/gradle/develocity-build-validation-scripts/releases/download/v${script_version}/gradle-enterprise-maven-build-validation-${script_version}.zip
           # Verify zip
           echo "${script_checksum}  gradle-enterprise-maven-build-validation-${script_version}.zip" | shasum -a 512 -c-
           # Extract Build Validation Scripts

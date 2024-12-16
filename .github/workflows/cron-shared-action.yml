@@ -14,12 +14,12 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Download the validation scripts
-        uses: gradle/gradle-enterprise-build-validation-scripts/.github/actions/maven/download@v2.5.1
+        uses: gradle/develocity-build-validation-scripts/.github/actions/maven/download@v2.5.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run Build Validation Scripts
-        uses: gradle/gradle-enterprise-build-validation-scripts/.github/actions/maven/experiment-2@v2.5.1
+        uses: gradle/develocity-build-validation-scripts/.github/actions/maven/experiment-2@v2.5.1
         with:
           gitRepo: $(pwd)
           goals: verify

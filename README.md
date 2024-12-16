@@ -47,7 +47,7 @@ Run the following command and follow the instructions in your terminal:
     ```shell
     version="2.5.1"
     # You can find the SHA 512 checksum on the releases page:
-    # https://github.com/gradle/gradle-enterprise-build-validation-scripts/releases
+    # https://github.com/gradle/develocity-build-validation-scripts/releases
     checksum="131fb1a0de2409d7f1747bd0da75680e757d791596a81f43787f36badf40f1385aa593ab053c1b396a1bcbf6b9da64cc355e78c04eb55ff5d0a6526a5f318e54"
     ```
 
@@ -60,7 +60,7 @@ Run the following command and follow the instructions in your terminal:
     # Download and extract in temp directory
     pushd /tmp
     # Download scripts zip
-    curl -s -L -O "https://github.com/gradle/gradle-enterprise-build-validation-scripts/releases/download/v${version}/gradle-enterprise-maven-build-validation-${version}.zip"
+    curl -s -L -O "https://github.com/gradle/develocity-build-validation-scripts/releases/download/v${version}/gradle-enterprise-maven-build-validation-${version}.zip"
     # Verify zip
     echo "${checksum}  gradle-enterprise-maven-build-validation-${version}.zip" | shasum -a 512 -c-
     # Extract Build Validation Scripts
@@ -109,4 +109,4 @@ Be sure to check out our other **free** [courses][dpe-university] and [labs](htt
 [dpe-university]: https://dpeuniversity.gradle.com/
 [develocity-url]: https://dpeuniversity-develocity.gradle.com/
 [build-cache-course]: https://dpeuniversity.gradle.com/c/47262fea1e74b719afb590d8cb3f8280bf2af732
-[build-validation-scripts]: https://github.com/gradle/gradle-enterprise-build-validation-scripts
+[build-validation-scripts]: https://github.com/gradle/develocity-build-validation-scripts
